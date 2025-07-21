@@ -1,8 +1,6 @@
 # Azure-Vision-AI
-https://www.linkedin.com/in/khalid-kifayat/
 
 ✦ Project Summary: AI-Powered Image Analyzer Web App
-
 
   This project aims to develop an AI-Powered Image Analyzer Web Application designed to simplify and
   automate the process of managing and categorizing digital image collections. The core objective is to
@@ -12,7 +10,6 @@ https://www.linkedin.com/in/khalid-kifayat/
   and retrieve their photos.
 
   Technical Overview:
-
 
   The application is built with a modern, scalable architecture:
 
@@ -72,3 +69,5 @@ https://www.linkedin.com/in/khalid-kifayat/
   advanced search and filtering capabilities, and a more polished, responsive user interface. The goal is to
    evolve this prototype into a fully functional and visually appealing application for efficient image
   collection management.
+
+  For more updates : https://www.linkedin.com/in/khalid-kifayat/
