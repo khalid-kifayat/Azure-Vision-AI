@@ -44,8 +44,26 @@
       image uploads, sends them to Azure Computer Vision for analysis (requiring user-provided API key and
       endpoint), and returns the analysis results (description and tags).
 
-  Next Steps & Future Vision:
+  How to run:
+  you can start your server at http://localhost:3000 in your browser.
 
+  Remember to replace YOUR_COMPUTER_VISION_SUBSCRIPTION_KEY and YOUR_COMPUTER_VISION_ENDPOINT in server.js
+  with your actual Azure Computer Vision credentials for the image analysis to work.
+
+  To get these credentials:
+   1. Go to the Azure portal.
+   2. Search for and select "Computer Vision" services.
+   3. Create a new Computer Vision resource if you don't have one.
+   4. Once created, go to the "Keys and Endpoint" section. You'll find your Endpoint and Key 1 (or Key 2).
+
+  Once you've updated server.js with your credentials, you can start the server manually as before:
+
+   1 cd image-analyzer-app
+   2 node server.js
+
+  Then, open your browser to http://localhost:3000, upload the image 1 by 1, and see the analysis results. 
+
+  Next Steps & Future Vision:
 
   While the core AI analysis pipeline is in place, future development will focus on enhancing the user
   experience and adding more robust features as outlined in the initial project plan. This includes
