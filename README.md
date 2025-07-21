@@ -1,4 +1,5 @@
 # Azure-Vision-AI
+https://www.linkedin.com/in/khalid-kifayat/
 
 ✦ Project Summary: AI-Powered Image Analyzer Web App
 
