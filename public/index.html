@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Computer Vision AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #imagePreview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            display: none; /* Hidden by default */
+        }
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+        #results h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Azure Computer Vision AI - Image Analyzer 🤖</h1>
+        <center><h2>Created by Khalid Kifayat</h2></center>
+        <br>
+        <p>Upload an image to get automatic descriptions and tags.</p>
+        <br>
+        <center>
+        <form id="uploadForm">
+            <input type="file" id="imageUpload" name="image" accept="image/*">
+            <button type="submit">Analyze Image</button>
+        </form>
+        </center>
+        <img id="imagePreview" src="#" alt="Image Preview">
+
+        <div id="results">
+            <h3>Analysis Results:</h3>
+            <p><strong>Description:</strong> <span id="description"></span></p>
+            <p><strong>Tags:</strong> <span id="tags"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+            const imagePreview = document.getElementById('imagePreview');
+
+            if (!file) {
+                alert('Please select an image to upload.');
+                return;
+            }
+
+            // Display the uploaded image
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block'; // Show the image
+            };
+            reader.readAsDataURL(file);
+
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+                const response = await fetch('/analyze-image', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                document.getElementById('description').textContent = data.description;
+                document.getElementById('tags').textContent = data.tags.join(', ');
+
+            } catch (error) {
+                console.error('Error during image analysis:', error);
+                document.getElementById('description').textContent = 'Error analyzing image.';
+                document.getElementById('tags').textContent = '';
+                alert('Failed to analyze image. Please check the console for details.');
+            }
+        });
+    </script>
+    
+</body>
+</html>
